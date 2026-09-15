@@ -1,0 +1,558 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --paper:      #fdfbf9;
+  --paper-dim:  #efe9df;
+  --ink:        #1c1a17;
+  --mauve:      #8a6a5c;
+  --mauve-dark: #5c4238;
+  --sage:       #7c8a6e;
+  --line:       #d9d1c3;
+  --number:     #d6d6d6;
+  --font-display: "Montserrat", sans-serif;
+  --font-body:    "Work Sans", sans-serif;
+}
+
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- En-tête de projet ---------- */
+.intro {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 8vh 8vw;
+  border-bottom: 1px solid var(--line);
+}
+
+.intro__eyebrow {
+  font-family: var(--font-body);
+  font-size:  clamp(0.95rem, 5vw, 2.095rem);
+  text-transform: uppercase;
+  color: var(--mauve-dark);
+  margin: 0 0 0.5rem;
+}
+
+.intro__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3.5rem, 10vw, 8.5rem);
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink);
+}
+
+.intro__meta {
+  max-width: 34ch;
+  margin: 1.5rem 0 0;
+  color: var(--mauve-dark);
+  font-size: 1.05rem;
+}
+
+.intro__scroll {
+  margin-top: 4rem;
+  font-size: 0.85rem;
+  color: var(--ink);
+  opacity: 0.5;
+  padding-left: 1.6rem;
+  position: relative;
+}
+
+.intro__scroll::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.54em;
+  width: 1.1rem;
+  height: 6px;
+  background: currentColor;
+}
+
+/* ---------- Structure générale des blocs ---------- */
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 6vw;
+}
+
+.block {
+  position: relative;
+  padding: 14vh 0;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+
+.block--stacked {
+  display: block;
+}
+
+.block__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 6vh;
+}
+
+.block__row--end {
+  align-items: start;
+}
+
+.block__side {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Bloc 2 (projet 02) : image verticale à gauche, image + texte empilés à droite */
+.block--dual {
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: stretch;
+}
+
+.block__col {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Image qui occupe toute la hauteur disponible, que ce soit un item de grille étirée (.block--*) ou un enfant flex (.block__col) */
+.block__image--tall {
+  flex: 1;
+  height: 100%;
+}
+
+.block__image--tall img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bloc 3 (projet 02) : titre + image verticale à gauche, image large + (numéro/image) à droite */
+.block--trio {
+  grid-template-columns: 0.6fr 1.4fr;
+  align-items: stretch;
+}
+
+/* Bloc 3 (projet 03) : titre + numéro puis image à gauche, deux images empilées à droite */
+.block--trio-rev {
+  align-items: stretch;
+}
+
+.block__row--numeral {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.block__row--numeral .block__image {
+  flex: 1;
+}
+
+/* Bloc 3 (projet 07) : image + texte + image alignés sur une même ligne */
+.block__row--triple {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.block__row--triple .block__image {
+  flex: 1;
+}
+
+.block__row--triple .block__text {
+  flex: 0 1 26ch;
+}
+
+/* Titre superposé en haut à gauche d'une image pleine largeur */
+.block__overlay {
+  position: relative;
+  margin-top: 6vh;
+}
+
+.block__overlay .block__text {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  z-index: 1;
+  margin: 0;
+}
+
+/* ---------- Images ---------- */
+.block__image img {
+  width: 100%;
+  border: 1px solid var(--line);
+}
+
+.block__image--strip img,
+.block__image--wide img {
+  border: none;
+}
+
+/* Bloc 3 : image de coupe en arrière-plan, en débord plein écran */
+.block__feature-wrap {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  aspect-ratio: 1796 / 627;
+  overflow: hidden;
+}
+
+.block__feature-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('assets/p01-coupe.avif');
+  background-size: cover;
+  background-position: center;
+}
+
+.block__row--feature .block__text {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  justify-self: end;
+  margin-top: 8vh;
+}
+
+/* ---------- Textes ---------- */
+.block__text h2,
+.intro__title {
+  font-family: var(--font-display);
+}
+
+.block__text h2 {
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin: 0 0 1rem;
+  letter-spacing: -0.01em;
+  line-height: 1.1;/* interligne */
+  text-transform: uppercase;
+}
+
+.block__text .small {
+  font-size: clamp(1.6rem, 2vw, 2.1rem);
+}
+
+.block__text p {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--ink);
+}
+
+.block__text--tight p {
+  max-width: 34ch;
+  font-size: 1.15rem;
+  color: var(--mauve-dark);
+}
+
+.align-right {
+   text-align: right;
+}
+
+.block__number {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(4rem, 8vw, 7rem);
+  color: var(--number);
+  -webkit-text-stroke: 1.5px var(--line);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+/* Numéro géant en biais (90°), ancré tout à gauche et en arrière-plan du Bloc 1 */
+.block__number--corner {
+  position: absolute;
+  top: 5rem;
+  left: -12vw;
+  z-index: -1;
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(7rem, 22vw, 14rem);
+  line-height: 0.85;
+  color: var(--number);
+  -webkit-text-stroke: 1.5px var(--line);
+  margin: 0;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+/* Variante : numéro ancré en bas du bloc plutôt qu'en haut */
+.block__number--corner--low {
+  top: auto;
+  bottom: 2rem;
+}
+
+/* ---------- Lien retour (pages projet) ---------- */
+.back-link {
+  position: absolute;
+  top: 3vh;
+  left: 6vw;
+  z-index: 1;
+  color: var(--mauve-dark);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.back-link:hover {
+  opacity: 1;
+}
+
+/* ---------- Grille de projets (accueil) ---------- */
+.projects {
+  padding: 10vh 0 14vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3.5rem 2.5rem;
+}
+
+.card-spacer {
+  display: block;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.card:hover {
+  transform: translateY(-0.4rem);
+}
+
+.card__media {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.card:hover .card__media img {
+  transform: scale(1.04);
+}
+
+.card__media--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper-dim);
+  border: 1px dashed var(--line);
+  color: var(--mauve-dark);
+  font-size: 0.9rem;
+}
+
+.card__body {
+  padding-top: 1.2rem;
+}
+
+.card__number {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--number);
+  margin-bottom: 0.3rem;
+  
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.4vw, 0.9rem);
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.card__desc {
+  margin: 0;
+  max-width: 40ch;
+  color: var(--mauve-dark);
+  font-size: 0.98rem;
+}
+
+/* ---------- Emplacements image en attente (pages projet placeholder) ---------- */
+.placeholder-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  background: var(--paper-dim);
+  border: 1px dashed var(--line) !important;
+  color: var(--mauve-dark);
+  font-size: 0.9rem;
+}
+
+.placeholder-media img {
+  display: none;
+}
+
+/* ---------- Pied de page ---------- */
+.outro {
+  padding: 8vh 8vw 10vh;
+  color: var(--mauve-dark);
+  font-size: 0.9rem;
+}
+
+.outro .back-link {
+  position: static;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+/* ==========================================================================
+   Animation au scroll : fondu + glissement depuis la gauche ou la droite.
+   La classe .is-visible est ajoutée par script.js via IntersectionObserver.
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  will-change: transform, opacity;
+}
+
+.reveal--left  { transform: translateX(-4.5rem); }
+.reveal--right { transform: translateX(4.5rem); }
+.reveal--up    { transform: translateY(4rem); }
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal.reveal--up.is-visible {
+  transform: translateY(0);
+}
+
+/* Le numéro en biais garde son inclinaison tout en glissant vers sa position,
+   avec une seconde de retard sur les autres animations du bloc */
+.reveal.block__number--corner {
+  transform: translateX(-4.5rem) rotate(-90deg);
+  transition-delay: 0.2s;
+}
+
+.reveal.block__number--corner.is-visible {
+  transform: translateX(0) rotate(-90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: opacity 0.4s ease;
+    transform: none !important;
+  }
+
+  .reveal.block__number--corner {
+    transform: rotate(-90deg) !important;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1200px) and (min-width: 861px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-spacer {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .block {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 8vh 0;
+  }
+
+  .block__row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .block__row--numeral {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .block__row--triple {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .block__row--triple .block__text {
+    flex-basis: auto;
+  }
+
+  .block__feature-wrap,
+  .block__row--feature .block__text {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .block__number--corner {
+    top: 7rem;
+    left: -4vw;
+    font-size: clamp(5rem, 26vw, 8rem);
+  }
+
+  .intro {
+    padding: 10vh 6vw;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 6vh 0 10vh;
+  }
+
+  .card-spacer {
+    display: none;
+  }
+
+  .back-link {
+    top: 2vh;
+    left: 5vw;
+  }
+}
