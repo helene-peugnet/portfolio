@@ -1,0 +1,33 @@
+name: Compteur de visites
+
+on:
+  repository_dispatch:
+    types: [increment-view]
+
+permissions:
+  contents: write
+
+jobs:
+  increment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Lire et incrémenter le compteur
+        run: |
+          FILE=docs/views.json
+          if [ ! -f "$FILE" ]; then
+            echo '{"views":0}' > $FILE
+          fi
+          count=$(jq '.views + 1' $FILE)
+          echo "{\"views\": $count}" > $FILE
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add docs/views.json
+          git commit -m "Increment view counter"
+          git push
